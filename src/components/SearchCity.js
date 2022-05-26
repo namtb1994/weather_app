@@ -48,7 +48,9 @@ function SearchCity(props) {
 	const RenderItem = (props) => {
 		const itemData = props.itemData;
 		if (itemData.lat && itemData.lon) {
-			return <li role="button" onClick={event => handleItemClick(event, itemData)} className="w-100 item pl-3 pr-3 pb-1 pt-1 react-tabs__tab">
+			return <li role="button"
+						onClick={event => handleItemClick(event, itemData)}
+						className="w-100 item pl-3 pr-3 pb-1 pt-1" style={{cursor:"pointer"}}>
 				<span>
 					{(itemData.local_names && ('vi' in itemData.local_names)) ? itemData.local_names.vi : itemData.name}
 				</span>

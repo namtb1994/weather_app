@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import SearchCity from './components/SearchCity';
-import WeatherData from './components/WeatherData';
+import React from 'react';
+
+const SearchCity = React.lazy(() => import('./components/SearchCity'));
+const WeatherData = React.lazy(() => import('./components/WeatherData'));
 
 function App() {
     return (

@@ -20,8 +20,8 @@ function Week(props) {
 	const RenderItem = (props) => {
 		const itemData = props.itemData;
 		const classActive = props.selected;
-		const classList = classActive+" col-sm-3 pt-4 pb-4 react-tabs__tab"
-		return <div onClick={event => handleItemClick(event, props.index)} className={classList}>
+		const classList = classActive+" col-sm-3 pt-4 pb-4"
+		return <div onClick={event => handleItemClick(event, props.index)} className={classList} style={{cursor:"pointer"}}>
 			<h6>{getTime(itemData.dt)}</h6>
 			<div className="content pt-4">
 				<h2>{itemData.temp.min.toFixed()+"° - "+itemData.temp.max.toFixed()+"°"}</h2>

@@ -3,8 +3,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { actSearchCity, actGetWeatherData } from '../actions/index';
 import { API_KEY } from "../const/ApiKey";
-import WeatherDataLeft from './WeatherData/Left';
-import WeatherDataRight from './WeatherData/Right';
+
+const WeatherDataLeft = React.lazy(() => import('./WeatherData/Left'));
+const WeatherDataRight = React.lazy(() => import('./WeatherData/Right'));
 
 function WeatherData(props) {
 
