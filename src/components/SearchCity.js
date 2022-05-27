@@ -40,6 +40,7 @@ function SearchCity(props) {
 			lat: itemData.lat,
 			lon: itemData.lon
 		});
+		props.searchKeyword(null);
 		setResultSearch([]);
 		setShowBoxResult(false);
 		setCurrentKeyword(event.target.innerText);
