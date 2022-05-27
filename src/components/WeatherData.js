@@ -11,7 +11,7 @@ function WeatherData(props) {
 
 	const Ref = useRef(null);
 
-    const delay = 30; //unit second
+    const delay = 60; //unit second
 
     const autoRefresh = (e) => {
         if (Ref.current) {
