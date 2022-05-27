@@ -71,7 +71,7 @@ function WeatherData(props) {
 		    !Array.isArray(props.city_data) &&
 		    props.city_data !== null
 		) {
-			clearTimer(getDeadTime());
+			//clearTimer(getDeadTime());
 		}
 	},[props.weather_data, props.city_data]);
 
