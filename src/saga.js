@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects';
 import { actGetListCity, actGetWeatherData } from './actions/index';
-import { CHOOSE_CITY, SEARCH_KEYWORD } from "./const/index";
+import { CHOOSE_CITY, SEARCH_KEYWORD, AUTO_REFRESH } from "./const/index";
 import {getCityDataApi} from './api/GeoApi';
 import {getWeatherDataApi} from './api/WeatherApi';
 
@@ -30,9 +30,14 @@ function* getWeatherDataSaga() {
 	yield takeEvery(CHOOSE_CITY, getWeatherData);
 }
 
+function* autoRefresh() {
+	yield takeEvery(AUTO_REFRESH, getWeatherData);
+}
+
 export default function* rootSaga() {
     yield all([
         getListCitySaga(),
-        getWeatherDataSaga()
+        getWeatherDataSaga(),
+        autoRefresh()
     ]);
 }

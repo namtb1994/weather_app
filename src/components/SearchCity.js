@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { actChooseCity, actSearchKeyword } from '../actions/index';
-import { API_KEY } from "../const/ApiKey";
 
 function SearchCity(props) {
 

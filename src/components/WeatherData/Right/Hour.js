@@ -32,31 +32,33 @@ function Hour(props) {
 
 	return(
 		<div className="row">
-			<Line
-				data={{
-					labels: times,
-					datasets: [
-						{
-							data: tempData,
-							label: "Temp (°C)",
-							borderColor: "#8e5ea2",
-							fill: false
-						},
-						{
-							data: feelLikeData,
-							label: "Feel like (°C)",
-							borderColor: "#3cba9f",
-							fill: false
+			<div className="col-md-12">
+				<Line
+					data={{
+						labels: times,
+						datasets: [
+							{
+								data: tempData,
+								label: "Temp (°C)",
+								borderColor: "#8e5ea2",
+								fill: false
+							},
+							{
+								data: feelLikeData,
+								label: "Feel like (°C)",
+								borderColor: "#3cba9f",
+								fill: false
+							}
+						]
+					}}
+					options={{
+						title: {
+							display: false,
+							text: "Hourly temps"
 						}
-					]
-				}}
-				options={{
-					title: {
-						display: false,
-						text: "Hourly temps"
-					}
-				}}
-			/>
+					}}
+				/>
+			</div>
 		</div>
 	)
 }
