@@ -64,7 +64,6 @@ function WeatherData(props) {
 		    !Array.isArray(props.weather_data) &&
 		    props.weather_data !== null
 		) {
-			console.log(props.weather_data.current);
 		    setShowContent(true);
 		}
 		if (
