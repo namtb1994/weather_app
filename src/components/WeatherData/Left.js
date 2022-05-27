@@ -20,7 +20,7 @@ function Left(props) {
 	return(
 		<div className="pt-5 pb-5 pl-4 pr-4 bg-dark text-white">
 			<h3>{cityName}</h3>
-			<h1 className="mt-3 mb-3">{currentWeather.temp.toFixed()} °C</h1>
+			<h1 className="mt-3 mb-3">{currentWeather.feels_like.toFixed()} °C</h1>
 			<h4>{getTime(currentWeather.dt)}</h4>
 			<h6>{currentWeather.weather[0].description}</h6>
 			<h6>Clouds {currentWeather.clouds}%</h6>

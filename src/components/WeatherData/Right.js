@@ -1,11 +1,10 @@
-import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import WeatherDataToday from './Right/Today';
 import WeatherDataWeek from './Right/Week';
 import WeatherDataHour from './Right/Hour';
 
-function Left() {
+function Right() {
 
 	return(
 		<div>
@@ -29,4 +28,4 @@ function Left() {
 	)
 }
 
-export default (Left)
+export default (Right)

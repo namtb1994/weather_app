@@ -72,7 +72,7 @@ function SearchCity(props) {
 	}
 
 	return(
-		<div className="row mb-5 mt-5">
+		<div className="row mb-3 mt-3">
 			<div className="box-search-city col-md-12">
 				<input name="city"
 					className="form-control"

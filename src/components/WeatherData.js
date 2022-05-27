@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { actAutoRefresh } from '../actions/index';
+import { actRefresh } from '../actions/index';
 
 const WeatherDataLeft = React.lazy(() => import('./WeatherData/Left'));
 const WeatherDataRight = React.lazy(() => import('./WeatherData/Right'));
@@ -11,51 +11,20 @@ function WeatherData(props) {
 
 	const Ref = useRef(null);
 
-    const [timer, setTimer] = useState('00:00:00');
+    const delay = 30; //unit second
 
-    const delay = 30;
-
-    const getTimeRemaining = (e) => {
-        const total = Date.parse(e) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor((total / 1000 / 60) % 60);
-        const hours = Math.floor((total / 1000 / 60 / 60) % 24);
-        return {
-            total, hours, minutes, seconds
-        };
-    }
-
-    const startTimer = (e) => {
-        let { total, hours, minutes, seconds } = getTimeRemaining(e);
-        if (total >= 0) {
-            setTimer(
-                (hours > 9 ? hours : '0' + hours) + ':' +
-                (minutes > 9 ? minutes : '0' + minutes) + ':'
-                + (seconds > 9 ? seconds : '0' + seconds)
-            )
-        } else {
-        	props.autoRefresh({
-				name: props.city_data.name,
-				lat: props.city_data.lat,
-				lon: props.city_data.lon
-			});
-        	clearTimer(getDeadTime());
+    const autoRefresh = (e) => {
+        if (Ref.current) {
+        	clearInterval(Ref.current);
         }
-    }
-
-    const clearTimer = (e) => {
-        setTimer('00:00:'+delay);
-        if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
-            startTimer(e);
-        }, 1000)
+        	props.refresh({
+        		name: props.city_data.name,
+        		lat: props.city_data.lat,
+        		lon: props.city_data.lon
+        	});
+        }, delay*1000)
         Ref.current = id;
-    }
-
-    const getDeadTime = () => {
-        let deadline = new Date();
-        deadline.setSeconds(deadline.getSeconds() + delay);
-        return deadline;
     }
 
 	useEffect(() => {
@@ -71,32 +40,32 @@ function WeatherData(props) {
 		    !Array.isArray(props.city_data) &&
 		    props.city_data !== null
 		) {
-			//clearTimer(getDeadTime());
+			autoRefresh();
 		}
 	},[props.weather_data, props.city_data]);
 
 	const RenderContent = () => {
-		if (showContent) {
-			return <div className="row mb-5 text-left">
-				<div className="col-left col-md-4">
-					<WeatherDataLeft />
-				</div>
-				<div className="col-right col-md-8">
-					<WeatherDataRight />
-				</div>
-			</div>;
-		}
+		return <div className="row mb-5 text-left">
+			<div className="col-left col-md-4">
+				<WeatherDataLeft />
+			</div>
+			<div className="col-right col-md-8">
+				<WeatherDataRight />
+			</div>
+		</div>;
 	}
 
 	return(
-		<RenderContent/>
+		<div>
+			{(showContent) ? RenderContent() : ''}
+		</div>
 	)
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		autoRefresh: (data) => {
-			dispatch(actAutoRefresh(data));
+		refresh: (data) => {
+			dispatch(actRefresh(data));
 		}
 	};
 };

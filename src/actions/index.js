@@ -1,4 +1,4 @@
-import { CHOOSE_CITY, GET_WEATHER_DATA, GET_LIST_CITY, SEARCH_KEYWORD, AUTO_REFRESH } from "../const/index";
+import { CHOOSE_CITY, GET_WEATHER_DATA, GET_LIST_CITY, SEARCH_KEYWORD, REFRESH } from "../const/index";
 
 export const actChooseCity = (data) => {
     return {
@@ -28,9 +28,9 @@ export const actSearchKeyword = (data) => {
     };
 };
 
-export const actAutoRefresh = (data) => {
+export const actRefresh = (data) => {
     return {
-        type: AUTO_REFRESH,
+        type: REFRESH,
         data
     };
 };
