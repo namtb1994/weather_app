@@ -20,7 +20,7 @@ function Left(props) {
 	return(
 		<div className="pt-5 pb-5 pl-4 pr-4 bg-dark text-white">
 			<h3>{cityName}</h3>
-			<h1 className="mt-3 mb-3">{currentWeather.feels_like.toFixed()} °C</h1>
+			<h1 className="mt-3 mb-3" title="Feels Like">{currentWeather.feels_like.toFixed()} °C</h1>
 			<h4>{getTime(currentWeather.dt)}</h4>
 			<h6>{currentWeather.weather[0].description}</h6>
 			<h6>Clouds {currentWeather.clouds}%</h6>
@@ -38,29 +38,8 @@ const mapStateToProps = (state, ownProps) => {
 function getTime(time) {
     var date = new Date(time*1000);
     var day = date.getDay();
-    switch(day) {
-		case 1:
-			day = "Monday";
-			break;
-		case 2:
-			day = "Tuesday";
-			break;
-		case 3:
-			day = "Wednesday";
-			break;
-		case 4:
-			day = "Thursday";
-			break;
-		case 5:
-			day = "Friday";
-			break;
-		case 6:
-			day = "Saturday";
-			break;
-		default:
-			day = "Sunday";
-			break;
-    }
+    const options = { weekday: 'long'};
+    var day = new Intl.DateTimeFormat('en-US', options).format(date);
 
     return day+", "+date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 }
