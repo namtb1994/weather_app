@@ -99,7 +99,7 @@ function getTime(time, type = null) {
 				day = "Sunday";
 				break;
 	    }
-	    result = day+", "+date.getDate()+'/'+date.getMonth();
+	    result = day+", "+date.getDate()+'/'+(date.getMonth()+1);
     }
 
     return result;
